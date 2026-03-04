@@ -1,0 +1,24 @@
+name: OnyxEssentials
+version: '1.0.0-Alpha-1'
+main: com.timedust.onyxEssentials.OnyxEssentials
+api-version: '1.21'
+authors: [ TImeDust42 ]
+
+commands:
+  onyxessentials:
+    description: "Основная комманда плагина, отвечает за функции администраторов"
+    aliases:
+      - onyx
+      - essentials
+  heal:
+    description: "Исцеление себя или выбранного игрока"
+  feed:
+    description: "Накормить себя или выбранного игрока"
+  repair:
+    description: "Починка инструментов и брони"
+  fly:
+    description: "Активация полёта"
+  vanish:
+    description: "Активация невидимости"
+  god:
+    description: "Активация неуязвимости"

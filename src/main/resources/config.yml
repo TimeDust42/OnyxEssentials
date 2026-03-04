@@ -1,0 +1,15 @@
+join-message: "<green><name> зашёл на сервер!"
+quit-message: "<red><name> покинул сервер"
+cooldowns:
+  repair:
+    item: 300
+    armor: 3600
+    all: 1800
+  heal:
+    me: 300
+    other: 600
+    all: 1800
+  feed:
+    me: 300
+    other: 600
+    all: 1800
