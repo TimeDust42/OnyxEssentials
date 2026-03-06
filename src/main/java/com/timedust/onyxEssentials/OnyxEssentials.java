@@ -9,7 +9,7 @@ import com.timedust.onyxEssentials.managers.CooldownsManager;
 import com.timedust.onyxEssentials.managers.FlyManager;
 import com.timedust.onyxEssentials.managers.GodModeManager;
 import com.timedust.onyxEssentials.managers.VanishManager;
-import com.timedust.onyxEssentials.tasks.VanishActionBarTask;
+import com.timedust.onyxEssentials.tasks.ActionBarTask;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -43,11 +43,13 @@ public final class OnyxEssentials extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new GodModeListener(godModeManager), this);
 
         /* Bukkit Tasks */
-        new VanishActionBarTask(vanishManager).runTaskTimer(this, 0L, 40L);
+        new ActionBarTask(vanishManager, godModeManager, flyManager).runTaskTimer(this, 0L, 40L);
 
         /* Commands */
         registerCommand("onyxessentials", new OnyxEssentialsCommand(this, configManager));
+        registerCommand("gamemode", new GameModeCommand());
         registerCommand("heal", new HealCommand(configManager, cooldownsManager));
+        registerCommand("near", new NearCommand());
         registerCommand("feed", new FeedCommand(configManager, cooldownsManager));
         registerCommand("repair", new RepairCommand(configManager, cooldownsManager));
         registerCommand("fly", new FlyCommand(flyManager));
@@ -75,7 +77,6 @@ public final class OnyxEssentials extends JavaPlugin {
 
         Objects.requireNonNull(this.getCommand(label)).setExecutor((CommandExecutor) command);
         if (!(command instanceof TabCompleter)) {
-            getLogger().info("Ошибка регистрации TabCompleter для команды " + label);
             return;
         }
         Objects.requireNonNull(this.getCommand(label)).setTabCompleter((TabCompleter) command);

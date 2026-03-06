@@ -22,3 +22,9 @@ commands:
     description: "Активация невидимости"
   god:
     description: "Активация неуязвимости"
+  near:
+    description: "Выводит игроков поблизости"
+  gamemode:
+    description: "Изменение режима игры игрока"
+    aliases:
+      - gm
