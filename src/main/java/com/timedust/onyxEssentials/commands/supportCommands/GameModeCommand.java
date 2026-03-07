@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameModeCommand implements CommandExecutor, TabCompleter {
@@ -29,7 +30,7 @@ public class GameModeCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
 
-            if (!sender.hasPermission("onyxEssentials.gamemode")) {
+            if (!sender.hasPermission("onyx-essentials.gamemode")) {
                 sender.sendMessage(Component.text("You do not have permission to use this command.", NamedTextColor.RED));
                 return true;
             }
@@ -46,7 +47,7 @@ public class GameModeCommand implements CommandExecutor, TabCompleter {
             return true;
         }
         if (args.length == 2) {
-            if (!sender.hasPermission("onyxEssentials.gamemode.other")) {
+            if (!sender.hasPermission("onyx-essentials.gamemode.other")) {
                 sender.sendMessage(Component.text("You do not have permission to use this command.", NamedTextColor.RED));
                 return true;
             }
@@ -72,9 +73,21 @@ public class GameModeCommand implements CommandExecutor, TabCompleter {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         if (args.length == 1) {
-            return List.of("0", "1", "2", "3",
-                    "survival", "creative", "adventure", "spectator",
-                    "s", "c", "a", "sp");
+            if (sender.hasPermission("onyx-essentials.gamemode")) {
+                return List.of("0", "1", "2", "3",
+                        "survival", "creative", "adventure", "spectator",
+                        "s", "c", "a", "sp");
+            }
+        }
+        if (args.length == 2) {
+            String input = args[1].toLowerCase();
+            List<String> suggestions = new ArrayList<>();
+            if (sender.hasPermission("onyx-essentials.gamemode.other")) {
+                Bukkit.getOnlinePlayers().forEach(p -> {
+                    if (p.getName().toLowerCase().startsWith(input)) suggestions.add(p.getName());
+                });
+            }
+            return suggestions;
         }
         return List.of();
     }

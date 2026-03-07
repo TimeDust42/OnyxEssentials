@@ -12,6 +12,14 @@ commands:
       - essentials
   heal:
     description: "Исцеление себя или выбранного игрока"
+  gamemode:
+    description: "Изменение режима игры игрока"
+    aliases:
+      - gm
+  tp:
+    description: "Телепортация игроков"
+    aliases:
+      - teleport
   feed:
     description: "Накормить себя или выбранного игрока"
   repair:
@@ -24,7 +32,3 @@ commands:
     description: "Активация неуязвимости"
   near:
     description: "Выводит игроков поблизости"
-  gamemode:
-    description: "Изменение режима игры игрока"
-    aliases:
-      - gm

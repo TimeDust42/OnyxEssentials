@@ -48,6 +48,7 @@ public final class OnyxEssentials extends JavaPlugin {
         /* Commands */
         registerCommand("onyxessentials", new OnyxEssentialsCommand(this, configManager));
         registerCommand("gamemode", new GameModeCommand());
+        registerCommand("tp", new TeleportCommand());
         registerCommand("heal", new HealCommand(configManager, cooldownsManager));
         registerCommand("near", new NearCommand());
         registerCommand("feed", new FeedCommand(configManager, cooldownsManager));

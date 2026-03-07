@@ -23,7 +23,7 @@ public class NearCommand implements CommandExecutor {
             sender.sendMessage(Component.text("Only players can execute this command!",  NamedTextColor.RED));
             return true;
         }
-        if (!player.hasPermission("onyxEssentials.near")) {
+        if (!player.hasPermission("onyx-essentials.near")) {
             player.sendMessage(Component.text("You do not have permission to execute this command!",  NamedTextColor.RED));
             return true;
         }
